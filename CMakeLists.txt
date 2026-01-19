@@ -94,7 +94,7 @@ block()
 
     set(CPACK_INNOSETUP_USE_MODERN_WIZARD TRUE)
     set(CPACK_INNOSETUP_SETUP_WizardStyle "modern dynamic")
-    set(CPACK_INNOSETUP_CREATE_UNINSTALL_LINK TRUE)
+    set(CPACK_INNOSETUP_CREATE_UNINSTALL_LINK FALSE)
     set(CPACK_INNOSETUP_SETUP_AppName "Interception Driver Fix")
     set(CPACK_INNOSETUP_SETUP_UninstallDisplayName "Interception Driver Fix")
 

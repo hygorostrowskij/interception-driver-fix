@@ -29,3 +29,7 @@ Name: "{commonappdata}\interception-driver-fix\logs"; Flags: uninsalwaysuninstal
 [INI]
 Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "yes"; Tasks: settings_lockdown\enable
 Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "no"; Tasks: settings_lockdown\disable
+
+
+[Icons]
+Name: "{group}\{cm:UninstallProgram,Interception Driver Fix}"; Filename: "{uninstallexe}"; IconFilename: "{uninstallexe}"
