@@ -19,6 +19,21 @@ ChangesAssociations=yes
 ; WizardStyle=modern
 WizardSizePercent=120, 150
 SetupMutex=Global\interception-driver-fix-setup-mutex,interception-driver-fix-setup-mutex
+WizardImageStretch     = yes
+WizardKeepAspectRatio  = yes
+WizardImageAlphaFormat = defined
+WizardImageBackColor                 = none
+WizardImageBackColorDynamicDark      = none
+WizardSmallImageBackColor            = none
+WizardSmallImageBackColorDynamicDark = none
+WizardBackImageFile             = "@CMAKE_CURRENT_SOURCE_DIR@/assets/gradient-light.bmp"
+WizardBackImageFileDynamicDark  = "@CMAKE_CURRENT_SOURCE_DIR@/assets/gradient-dark.bmp"
+WizardImageFile                 = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-vertical.bmp"
+WizardImageFileDynamicDark      = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-vertical.bmp"
+WizardSmallImageFile            = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-square.bmp"
+WizardSmallImageFileDynamicDark = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-square.bmp"
+SetupIconFile                   = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip.ico"
+UninstallDisplayIcon            = "{app}\bin\interception-driver-fix.exe"
 
 
 [Dirs]
