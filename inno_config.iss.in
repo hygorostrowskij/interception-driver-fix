@@ -1,0 +1,31 @@
+[Tasks]
+Name: settings_lockdown; Description: "Set permission settings"; GroupDescription: "Settings:"; Flags: unchecked
+Name: settings_lockdown\enable; Description: "&Lockdown driver permissions (yes)"; GroupDescription: "Settings:"; Flags: unchecked exclusive
+Name: settings_lockdown\disable; Description: "&Lockdown driver permissions (no)"; GroupDescription: "Settings:"; Flags: unchecked exclusive
+
+
+[Run]
+Filename: "{app}\bin\interception-driver-fix.exe"; Parameters: "install-service"; Flags: runhidden waituntilterminated logoutput
+
+
+[UninstallRun]
+Filename: "{app}\bin\interception-driver-fix.exe"; Parameters: "uninstall-service"; Flags: runhidden waituntilterminated logoutput; RunOnceId: "UninstallService"
+
+
+[Setup]
+DisableWelcomePage=yes
+ChangesEnvironment=yes
+ChangesAssociations=yes
+; WizardStyle=modern
+WizardSizePercent=120, 150
+SetupMutex=Global\interception-driver-fix-setup-mutex,interception-driver-fix-setup-mutex
+
+
+[Dirs]
+Name: "{commonappdata}\interception-driver-fix"; Flags: uninsalwaysuninstall
+Name: "{commonappdata}\interception-driver-fix\logs"; Flags: uninsalwaysuninstall
+
+
+[INI]
+Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "yes"; Tasks: settings_lockdown\enable
+Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "no"; Tasks: settings_lockdown\disable
