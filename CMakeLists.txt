@@ -55,8 +55,8 @@ endif()
 block()
     set(HY_APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/chip.ico")
     set(HY_FILE_DESCRIPTION "Interception Driver Fix")
-    set(HY_INTERNAL_NAME "")
-    set(HY_ORIGINAL_FILENAME "interception-driver-fix.exe")
+    set(HY_INTERNAL_NAME "$<TARGET_FILE_BASE_NAME:${PROJECT_NAME}>")
+    set(HY_ORIGINAL_FILENAME "$<TARGET_FILE_NAME:${PROJECT_NAME}>")
     set(HY_PRODUCT_NAME "Interception Driver Fix")
     set(HY_COMPANY_NAME "Hygor Ostrowskij de Morais")
     set(HY_COPYRIGHT "Copyright 2025 Hygor Ostrowskij de Morais")
@@ -68,8 +68,12 @@ block()
 
     configure_file(
         "${CMAKE_CURRENT_SOURCE_DIR}/main.rc.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/main.rc"
+        "${CMAKE_CURRENT_BINARY_DIR}/main.rc.in"
         @ONLY
+    )
+    file(GENERATE
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/main.rc"
+        INPUT  "${CMAKE_CURRENT_BINARY_DIR}/main.rc.in"
     )
 endblock()
 
