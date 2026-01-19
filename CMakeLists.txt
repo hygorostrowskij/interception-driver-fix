@@ -90,8 +90,8 @@ block()
     set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Provides fixes for Interception Driver issues")
     set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/hygorostrowskij/interception-driver-fix")  # TODO: Create this repo
 
-    set(CPACK_PROJECT_CONFIG_FILE "cpack-config.cmake")
-    set(CPACK_VCPKG_TARGET_TRIPLET "${VCPKG_TARGET_TRIPLET}")
+    set(CPACK_PROJECT_CONFIG_FILE "cpack-config-per-generator.cmake")
+    set(CPACK_vcpkg_target_triplet "${VCPKG_TARGET_TRIPLET}")
 
     set(CPACK_PACKAGE_CHECKSUM "SHA256")
     set(CPACK_CREATE_DESKTOP_LINKS "")
