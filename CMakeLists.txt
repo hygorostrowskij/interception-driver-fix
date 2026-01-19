@@ -53,7 +53,7 @@ endif()
 
 
 block()
-    set(HY_APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/installer-icon.ico")
+    set(HY_APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/chip.ico")
     set(HY_FILE_DESCRIPTION "Interception Driver Fix")
     set(HY_INTERNAL_NAME "")
     set(HY_ORIGINAL_FILENAME "interception-driver-fix.exe")
