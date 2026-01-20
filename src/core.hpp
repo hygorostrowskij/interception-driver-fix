@@ -1,4 +1,4 @@
-// © 2025 Hygor Ostrowskij de Morais <hygor.o.morais@gmail.com>
+// Copyright (c) 2025 Hygor Ostrowskij de Morais <hygor.o.morais@gmail.com>
 
 #pragma once
 
