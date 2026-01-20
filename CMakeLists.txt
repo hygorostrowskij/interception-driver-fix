@@ -53,6 +53,11 @@ endif()
 
 
 install(TARGETS ${PROJECT_NAME})
+install(FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+    "${CMAKE_CURRENT_SOURCE_DIR}/README.md"
+    DESTINATION "."
+)
 
 
 block()
