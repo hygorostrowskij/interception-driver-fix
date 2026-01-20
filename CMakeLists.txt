@@ -93,7 +93,7 @@ block()
     set(CPACK_PROJECT_CONFIG_FILE "cpack-config-per-generator.cmake")
     set(CPACK_vcpkg_target_triplet "${VCPKG_TARGET_TRIPLET}")
 
-    set(CPACK_PACKAGE_CHECKSUM "SHA256")
+    set(CPACK_PACKAGE_CHECKSUM "SHA1;SHA256")
     set(CPACK_CREATE_DESKTOP_LINKS "")
 
     set(CPACK_INNOSETUP_USE_MODERN_WIZARD TRUE)
