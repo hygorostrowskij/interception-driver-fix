@@ -109,8 +109,12 @@ block()
 
     configure_file(
         "${CMAKE_CURRENT_SOURCE_DIR}/inno_config.iss.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/inno_config.iss"
+        "${CMAKE_CURRENT_BINARY_DIR}/inno_config.iss.in"
         @ONLY
+    )
+    file(GENERATE
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/inno_config.iss"
+        INPUT  "${CMAKE_CURRENT_BINARY_DIR}/inno_config.iss.in"
     )
 
     set(CPACK_INNOSETUP_EXTRA_SCRIPTS "${CMAKE_CURRENT_BINARY_DIR}/inno_config.iss")
