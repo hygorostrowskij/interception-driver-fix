@@ -74,7 +74,7 @@ block()
     set(CPACK_INNOSETUP_SETUP_WizardStyle "modern dynamic")
     set(CPACK_INNOSETUP_SETUP_AppId "{{5379A876-18DC-4531-AD3D-A180C70B7946}")
     set(CPACK_INNOSETUP_SETUP_AppName "Interception Driver Fix")
-    set(CPACK_INNOSETUP_SETUP_UninstallDisplayName "Interception Driver Fix")
+    set(CPACK_INNOSETUP_SETUP_UninstallDisplayName "${CPACK_INNOSETUP_SETUP_AppName}")
 
     set(CPACK_PACKAGE_INSTALL_DIRECTORY "${PROJECT_NAME}")
     set(CPACK_INNOSETUP_INSTALL_ROOT "{autopf}")
