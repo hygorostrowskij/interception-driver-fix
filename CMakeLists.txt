@@ -67,7 +67,7 @@ block()
     set(CPACK_PACKAGE_VENDOR "Hygor Ostrowskij de Morais")
     set(CPACK_PACKAGE_DESCRIPTION "Fixes device enumeration issues and security issues of the Interception Driver")
     set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Provides fixes for Interception Driver issues")
-    set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/hygorostrowskij/interception-driver-fix")  # TODO: Create this repo
+    set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/hygorostrowskij/interception-driver-fix")
 
     set(CPACK_PROJECT_CONFIG_FILE "cpack-config-per-generator.cmake")
     set(CPACK_vcpkg_target_triplet "${VCPKG_TARGET_TRIPLET}")
