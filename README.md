@@ -17,7 +17,7 @@ This fix runs entirely in usermode, and does not need to recompile or alter any 
 
 ## Configuration
 
-This application can be customized through the `interception-driver-fix.ini` file, which by default is located at `C:/ProgramData/interception-driver-fix/`.
+This application can be customized through the `interception-driver-fix.ini` file, which by default is located at `C:/ProgramData/Interception Driver Fix/`.
 
 ``` ini
 [default]
