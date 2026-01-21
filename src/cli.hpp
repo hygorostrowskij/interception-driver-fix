@@ -4,6 +4,7 @@
 
 #include <CLI/CLI.hpp>
 #include <tuple>
+#include "constants.hpp"
 #include "utils.hpp"
 
 
@@ -60,7 +61,7 @@ inline auto parse_cli(int argc, wchar_t** argv) {
 
     uninstall_service_subcommand->add_flag("-v, --verbose", uninstall_service_cfg.verbose, "");
 
-    auto cfg_file_path = (std::filesystem::path(get_program_data_folder()) / "interception-driver-fix/interception-driver-fix.ini").lexically_normal();  // HARDCODED default
+    auto cfg_file_path = (std::filesystem::path(get_program_data_folder()) / MY_DATA_DIR_NAME / MY_CFG_INI_NAME).lexically_normal();
     app->config_formatter(std::make_shared<CLI::ConfigINI>());
     app->set_config("--config", cfg_file_path.string(), "")
         ->multi_option_policy(CLI::MultiOptionPolicy::Throw);

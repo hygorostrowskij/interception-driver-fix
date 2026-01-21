@@ -5,9 +5,11 @@
 namespace hy {
 
 
-constexpr auto MY_SERVICE_NAME         = L"_InterceptionDriverFix";
+constexpr auto MY_SERVICE_NAME         = L"InterceptionDriverFix";
 constexpr auto MY_SERVICE_DISPLAY_NAME = L"Interception Driver Fix";
 constexpr auto MY_SERVICE_DESCRIPTION  = L"Fixes reenumeration issues for the Interception Driver.";
+constexpr auto MY_DATA_DIR_NAME        = "Interception Driver Fix";
+constexpr auto MY_CFG_INI_NAME         = "interception-driver-fix.ini";
 // constexpr auto MY_UNINSTALL_REGISTRY_KEY_NAME = L"_Witsy_Test";
 // constexpr auto MY_INSTALL_PATH = "C:/ProgramData/Witsy/InterceptionDriverFix/interception_driver_fix.exe";
 

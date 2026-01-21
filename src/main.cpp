@@ -15,7 +15,7 @@ using namespace hy;
 
 int wmain(int argc, wchar_t** argv) {
     try {
-        auto log_path = (std::filesystem::path(get_program_data_folder()) / "interception-driver-fix/logs/log.txt").lexically_normal();
+        auto log_path = (std::filesystem::path(get_program_data_folder()) / MY_DATA_DIR_NAME / "logs/interception-driver-fix.log").lexically_normal();
         // std::filesystem::create_directories(log_path.parent_path());
 
         std::vector<spdlog::sink_ptr> sinks;

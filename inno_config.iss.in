@@ -1,3 +1,8 @@
+#define MY_ABS_DATA_DIR "{commonappdata}\@CPACK_PACKAGE_INSTALL_DIRECTORY@"
+#define MY_CFG_INI_NAME "interception-driver-fix.ini"
+#define MY_APP_EXE      "{app}\bin\interception-driver-fix.exe"
+
+
 [Tasks]
 Name: settings_lockdown; Description: "Set permission settings"; GroupDescription: "Settings:"; Flags: unchecked
 Name: settings_lockdown\enable; Description: "&Lockdown driver permissions (yes)"; GroupDescription: "Settings:"; Flags: unchecked exclusive
@@ -5,11 +10,11 @@ Name: settings_lockdown\disable; Description: "&Lockdown driver permissions (no)
 
 
 [Run]
-Filename: "{app}\bin\interception-driver-fix.exe"; Parameters: "install-service"; Flags: runhidden waituntilterminated logoutput
+Filename: "{#MY_APP_EXE}"; Parameters: "install-service"; Flags: runhidden waituntilterminated logoutput
 
 
 [UninstallRun]
-Filename: "{app}\bin\interception-driver-fix.exe"; Parameters: "uninstall-service"; Flags: runhidden waituntilterminated logoutput; RunOnceId: "UninstallService"
+Filename: "{#MY_APP_EXE}"; Parameters: "uninstall-service"; Flags: runhidden waituntilterminated logoutput; RunOnceId: "UninstallService"
 
 
 [Setup]
@@ -33,17 +38,17 @@ WizardImageFileDynamicDark      = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-vertic
 WizardSmallImageFile            = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-square.bmp"
 WizardSmallImageFileDynamicDark = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip-square.bmp"
 SetupIconFile                   = "@CMAKE_CURRENT_SOURCE_DIR@/assets/chip.ico"
-UninstallDisplayIcon            = "{app}\bin\interception-driver-fix.exe"
+UninstallDisplayIcon            = "{#MY_APP_EXE}"
 
 
 [Dirs]
-Name: "{commonappdata}\interception-driver-fix"; Flags: uninsalwaysuninstall
-Name: "{commonappdata}\interception-driver-fix\logs"; Flags: uninsalwaysuninstall
+Name: "{#MY_ABS_DATA_DIR}"; Flags: uninsalwaysuninstall
+Name: "{#MY_ABS_DATA_DIR}\logs"; Flags: uninsalwaysuninstall
 
 
 [INI]
-Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "yes"; Tasks: settings_lockdown\enable
-Filename: "{commonappdata}\interception-driver-fix\interception-driver-fix.ini"; Section: "default"; Key: "lockdown"; String: "no"; Tasks: settings_lockdown\disable
+Filename: "{#MY_ABS_DATA_DIR}\{#MY_CFG_INI_NAME}"; Section: "default"; Key: "lockdown"; String: "yes"; Tasks: settings_lockdown\enable
+Filename: "{#MY_ABS_DATA_DIR}\{#MY_CFG_INI_NAME}"; Section: "default"; Key: "lockdown"; String: "no"; Tasks: settings_lockdown\disable
 
 
 [Icons]
