@@ -37,7 +37,7 @@ int wmain(int argc, wchar_t** argv) {
 
         auto [app, main_cfg, install_service_cfg, uninstall_service_cfg] = parse_cli(argc, argv);
 
-        spdlog::set_level(spdlog::level::err);
+        spdlog::set_level(spdlog::level::info);
 
         if (app->got_subcommand("install-service")) {
             if (install_service_cfg.verbose) {

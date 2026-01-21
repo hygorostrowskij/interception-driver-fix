@@ -67,7 +67,7 @@ inline VOID WINAPI ServiceMain(int argc, wchar_t** argv) {
             throw std::runtime_error("Unexpected arguments for service.");
         }
 
-        spdlog::set_level(spdlog::level::err);
+        spdlog::set_level(spdlog::level::info);
         if (main_cfg.verbose) {
             spdlog::set_level(spdlog::level::debug);
         }
