@@ -1,3 +1,5 @@
+// Copyright (c) 2026 Hygor Ostrowskij de Morais <hygor.o.morais@gmail.com>
+
 const
     EM_SETRECT = $00B3;
 
