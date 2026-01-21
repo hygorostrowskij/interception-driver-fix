@@ -3,21 +3,21 @@
 > [**Download installer**](https://github.com/hygorostrowskij/interception-driver-fix/releases/latest)
 
 This application fixes longstanding device reconnection issues for the Interception Driver,
-that happen when connecting new devices, or when the computer goes to sleep.
+which happens when connecting new devices, or when the computer goes to sleep.
 
 - [Issue: Connecting new devices stops device from working](https://github.com/oblitum/Interception/issues/25)
 - [Issue: Interception causes keyboard to become unresponsive if it is unplugged](https://github.com/oblitum/Interception/issues/93)
 
 Additionally, there's an option to lock down permissions for the driver, so that only applications with Administrator privileges have access to it.
 
-This fix should be installed alongside the [Interception Driver](https://github.com/oblitum/Interception). It does not ship with the Interception Driver, however.
+This fix should be installed alongside the [Interception Driver](https://github.com/oblitum/Interception). The driver is not included with the fix.
 
 This fix runs entirely in usermode, and does not need to recompile or alter any Interception driver files.
 
 
 ## Configuration
 
-The application can be customized through the `interception-driver-fix.ini` file, located by default inside `C:/ProgramData/interception-driver-fix/`.
+This application can be customized through the `interception-driver-fix.ini` file, which by default is located at `C:/ProgramData/interception-driver-fix/`.
 
 ``` ini
 [default]
