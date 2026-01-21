@@ -33,7 +33,7 @@ int wmain(int argc, wchar_t** argv) {
         auto logger = std::make_shared<spdlog::logger>("main", sinks.begin(), sinks.end());
         spdlog::set_default_logger(logger);
 
-        spdlog::info("Starting application.");
+        spdlog::info("Starting {} version {}.", MY_APP_NAME, MY_APP_VERSION);
 
         auto [app, main_cfg, install_service_cfg, uninstall_service_cfg] = parse_cli(argc, argv);
 

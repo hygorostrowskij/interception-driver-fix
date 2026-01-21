@@ -28,6 +28,7 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 target_include_directories(${PROJECT_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/vendor/include"
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/include"
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -57,6 +58,13 @@ install(FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
     "${CMAKE_CURRENT_SOURCE_DIR}/README.md"
     DESTINATION "."
+)
+
+
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/version.hpp.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/generated/include/hy_version.hpp"
+    @ONLY
 )
 
 
