@@ -49,7 +49,7 @@ inline void uninstall_service() {
     auto hService = sr::make_unique_resource_checked(
         OpenServiceW(
             hSCM.get(),
-            MY_SERVICE_NAME,
+            widen(MY_SERVICE_NAME).data(),
             SC_MANAGER_ALL_ACCESS
         ),
         nullptr,
@@ -96,8 +96,8 @@ inline void install_service() {
     auto hService = sr::make_unique_resource_checked(
         CreateServiceW(
             hSCM.get(),
-            MY_SERVICE_NAME,
-            MY_SERVICE_DISPLAY_NAME,
+            widen(MY_SERVICE_NAME).data(),
+            widen(MY_SERVICE_DISPLAY_NAME).data(),
             SC_MANAGER_ALL_ACCESS,
             SERVICE_WIN32_OWN_PROCESS,
             SERVICE_AUTO_START,  // SERVICE_DEMAND_START,
@@ -117,7 +117,7 @@ inline void install_service() {
     }
 
     SERVICE_DESCRIPTIONW serviceDescription = {};
-    serviceDescription.lpDescription = const_cast<LPWSTR>(MY_SERVICE_DESCRIPTION);
+    serviceDescription.lpDescription = const_cast<LPWSTR>(widen(MY_SERVICE_DESCRIPTION).data());
 
     if (!ChangeServiceConfig2W(
         hService.get(),
