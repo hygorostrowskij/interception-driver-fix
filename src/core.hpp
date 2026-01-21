@@ -136,88 +136,12 @@ inline void lockdown_interception_device(int idx) {
 }
 
 
-inline void ensure_debug_privilege() {
-    HANDLE hToken = nullptr;
-    LUID luid = {};
-    TOKEN_PRIVILEGES tp = {};
-
-    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES, &hToken)) {
-        throw std::runtime_error("OpenProcessToken error.");
-    }
-
-    if (!LookupPrivilegeValueW(L"", L"SeDebugPrivilege", &luid)) {  // SE_DEBUG_NAME constant has UNICODE-macro-related issues, I think
-        throw std::runtime_error("LookupPrivilegeValueW error.");
-    }
-
-    tp.PrivilegeCount = 1;
-    tp.Privileges[0].Luid = luid;
-    tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-
-    if (!AdjustTokenPrivileges(hToken, false, &tp, 0, nullptr, nullptr)) {
-        throw std::runtime_error("AdjustTokenPrivileges error.");
-    }
-
-    if (GetLastError() == ERROR_NOT_ALL_ASSIGNED) {
-        throw std::runtime_error("AdjustTokenPrivileges error (ERROR_NOT_ALL_ASSIGNED).");
-    }
-}
-
-
 inline int real_main(AppMainConfig cfg) {
     if (cfg.lockdown) {
         for (int i = 0; i < cfg.n_max_interception_devices; i++) {
             lockdown_interception_device(i);
         }
     }
-
-    ensure_debug_privilege();
-
-    DWORD pid = 0;
-    BOOL hResult;
-
-    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-    if (hSnapshot == INVALID_HANDLE_VALUE) {
-        throw std::runtime_error("CreateToolhelp32Snapshot error.");
-    }
-
-    PROCESSENTRY32W pe;
-    pe.dwSize = sizeof(PROCESSENTRY32W);
-
-    hResult = Process32FirstW(hSnapshot, &pe);
-    while (hResult) {
-        // if (wcsicmp(
-        //     L"winlogon.exe",  // SYSTEM account is required for the SeCreatePermanentPrivilege privilege.
-        //     pe.szExeFile
-        // ) == 0) {
-        if (boost::iequals(L"winlogon.exe", pe.szExeFile)) {  // SYSTEM account is required for the SeCreatePermanentPrivilege privilege.
-            pid = pe.th32ProcessID;
-            break;
-        }
-        hResult = Process32NextW(hSnapshot, &pe);
-    }
-
-    CloseHandle(hSnapshot);
-
-    if (!pid) {
-        throw std::runtime_error("PID with SeCreatePermanentPrivilege privilege not found.");
-    }
-
-    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, TRUE, pid);
-    if (!hProcess) {
-        throw std::runtime_error("OpenProcess error.");
-    }
-    HANDLE hToken;
-    if (!OpenProcessToken(hProcess, TOKEN_IMPERSONATE | TOKEN_DUPLICATE, &hToken)) {
-        throw std::runtime_error("OpenProcessToken error.");
-    }
-    HANDLE hDuplicatedToken;
-    if (!DuplicateToken(hToken, SecurityImpersonation, &hDuplicatedToken)) {
-        throw std::runtime_error("DuplicateToken error.");
-    }
-    if (!SetThreadToken(nullptr, hDuplicatedToken)) {
-        throw std::runtime_error("SetThreadToken error.");
-    }
-    // TODO: Close open handles, if any.
 
     for (int i = 10; i < cfg.n_keyboard_symlinks; i += 10) {
         for (int j = 0; j < 10; j++) {
