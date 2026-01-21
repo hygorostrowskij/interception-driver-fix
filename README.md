@@ -1,7 +1,5 @@
 ## Interception Driver Fix
 
-> [**Download installer**](https://github.com/hygorostrowskij/interception-driver-fix/releases/latest)
-
 This application fixes longstanding device reconnection issues for the Interception Driver,
 which happens when connecting new devices, or when the computer goes to sleep.
 
@@ -14,6 +12,10 @@ This fix should be installed alongside the [Interception Driver](https://github.
 
 This fix runs entirely in usermode, and does not need to recompile or alter any Interception driver files. It operates as a oneshot service, launching during Windows startup to acquire the necessary permissions, applies the fix, and then immediately exits.
 This approach ensures the driver is patched automatically on every boot with zero background resource usage.
+
+## Installation
+
+You can get the latest installer from the [releases page](https://github.com/hygorostrowskij/interception-driver-fix/releases/latest).
 
 ## Configuration
 
