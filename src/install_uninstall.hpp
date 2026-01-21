@@ -139,6 +139,14 @@ inline void install_service() {
     )) {
         throw std::runtime_error("ChangeServiceConfig2W error (privileges).");
     }
+
+    if (!StartServiceW(
+        hService.get(),
+        0,
+        nullptr
+    )) {
+        throw std::runtime_error("StartServiceW error.");
+    }
 }
 
 
