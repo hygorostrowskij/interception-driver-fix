@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.2)
 project(interception-driver-fix
     LANGUAGES CXX
-    VERSION "0.1.0"
+    VERSION "0.5.0"
 )
 
 
