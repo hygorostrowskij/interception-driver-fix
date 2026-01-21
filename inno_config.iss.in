@@ -18,7 +18,7 @@ Filename: "{#MY_APP_EXE}"; Parameters: "uninstall-service"; Flags: runhidden wai
 
 
 [Setup]
-DisableWelcomePage=yes
+DisableWelcomePage=no
 ChangesEnvironment=yes
 ChangesAssociations=yes
 ; WizardStyle=modern
