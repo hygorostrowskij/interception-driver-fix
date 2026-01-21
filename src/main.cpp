@@ -83,26 +83,3 @@ int wmain(int argc, wchar_t** argv) {
         return 1;
     }
 }
-
-
-// The different kinds of entrypoint normalization
-// - UTF-8 argv, defined always as char**
-// - argc and argv always present, instead of pCmdLine. This may be char** (UTF-8) or wchar_t** (~UTF-16), depending on cross platform needs.
-// - hInstance can be trivially retrieved at runtime, instead of relied on.
-// - nCmdShow can be trivially retrieved at runtime, along with all of STARTUPINFOW.
-// - For Windows, on a non-console subsystem, a console may be dynamically allocated instead, if required.
-// - For Windows, on a console subsystem, a console may be deallocated and its window hidden, if requested.
-// - For Windows, services aren't able to fully rely on GetCommandLineA/W, and should rely on argc and argv.
-//
-// - To provide for these, UTF-16 to UTF-8 narrowing must be provided. Widening is not necessary for this use case.
-//   Also, the narrowing must be able to work on wchar_t** and generate a char**
-//
-//
-// - For Windows DLLs, hInstance can't be trivially retrieved at runtime, so passing it somehow is desired.
-//   nCmdShow does not apply to DLLs at all, since it can't be passed.
-//   The reason integer is important, and should be passed too.
-//   The "reserved" value is somewhat important too, despite having been originally reserved, and should be passed too.
-//   If argc and argv compatibility for DLLs is desired, they should be emulated with environment variables, configuration files or something similar. Shared or injected memory could work too.
-//
-//
-// - For modding DLLs, they could also read and change argv, in order to accept command line parameters as usual, and then passing a normal command line to the wrapped application.
