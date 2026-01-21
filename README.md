@@ -12,8 +12,8 @@ Additionally, there's an option to lock down permissions for the driver, so that
 
 This fix should be installed alongside the [Interception Driver](https://github.com/oblitum/Interception). The driver is not included with the fix.
 
-This fix runs entirely in usermode, and does not need to recompile or alter any Interception driver files.
-
+This fix runs entirely in usermode, and does not need to recompile or alter any Interception driver files. It operates as a oneshot service, launching during Windows startup to acquire the necessary permissions, applies the fix, and then immediately exits.
+This approach ensures the driver is patched automatically on every boot with zero background resource usage.
 
 ## Configuration
 
@@ -24,17 +24,20 @@ This application can be customized through the `interception-driver-fix.ini` fil
 lockdown=yes  ; Restrict access of the Interception driver only to applications running with Administrator privileges.
 ```
 
+Note: If you change the configuration file, you may need to restart the service or your computer for changes to take effect.
 
 ## Credits
 
-- [Boost Algorithm](https://github.com/boostorg/algorithm)
-- [CLI11](https://github.com/CLIUtils/CLI11)
-- [fmt](https://github.com/fmtlib/fmt)
-- [Material Symbols / Material Icons](https://github.com/google/material-design-icons)
-- [phnt](https://github.com/winsiderss/phnt)
-- [spdlog](https://github.com/gabime/spdlog)
+This project makes use of the following open-source libraries:
 
-- Thanks to @oblitum for the incredible Interception Driver.
+- [Boost Algorithm](https://github.com/boostorg/algorithm) - General purpose algorithms.
+- [CLI11](https://github.com/CLIUtils/CLI11) - Command line parser.
+- [fmt](https://github.com/fmtlib/fmt) - Formatting library.
+- [Material Symbols / Material Icons](https://github.com/google/material-design-icons) - Iconography.
+- [phnt](https://github.com/winsiderss/phnt) - Native API headers.
+- [spdlog](https://github.com/gabime/spdlog) - Logging.
+
+A special thanks to @oblitum for creating the incredible Interception Driver.
 
 
 ## License
