@@ -1,6 +1,5 @@
 {
   "name": "interception-driver-fix",
-  "version": "0.1.0",
   "dependencies": [
     "cli11",
     "fmt",
