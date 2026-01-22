@@ -33,6 +33,8 @@ inline std::wstring get_current_executable() {
 
 
 inline void uninstall_service() {
+    spdlog::info("Uninstalling service.");
+
     auto hSCM = sr::make_unique_resource_checked(
         OpenSCManagerW(
             nullptr,
@@ -76,10 +78,14 @@ inline void uninstall_service() {
     if(!DeleteService(hService.get())) {
         throw std::runtime_error("DeleteService error.");
     }
+
+    spdlog::info("Uninstalled service successfully.");
 }
 
 
 inline void install_service() {
+    spdlog::info("Installing service.");
+
     auto hSCM = sr::make_unique_resource_checked(
         OpenSCManagerW(
             nullptr,
@@ -147,6 +153,8 @@ inline void install_service() {
     )) {
         throw std::runtime_error("StartServiceW error.");
     }
+
+    spdlog::info("Installed service successfully.");
 }
 
 

@@ -7,7 +7,7 @@
 #include "cli.hpp"
 #include "core.hpp"
 #include "service.hpp"
-#include "install_uninstall.hpp"
+#include "install_uninstall_service.hpp"
 
 
 using namespace hy;
