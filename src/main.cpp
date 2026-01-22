@@ -34,6 +34,7 @@ int wmain(int argc, wchar_t** argv) {
         spdlog::set_default_logger(logger);
 
         spdlog::info("Starting {} version {}.", MY_APP_NAME, MY_APP_VERSION);
+        spdlog::info("Command line arguments: {}", narrow(GetCommandLineW()));
 
         auto [app, main_cfg, install_service_cfg, uninstall_service_cfg] = parse_cli(argc, argv);
 
