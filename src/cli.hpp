@@ -63,9 +63,9 @@ inline auto parse_cli(int argc, wchar_t** argv) {
 
     auto cfg_file_path = (std::filesystem::path(get_program_data_folder()) / MY_DATA_DIR_NAME / MY_CFG_INI_NAME).lexically_normal();
     app->config_formatter(std::make_shared<CLI::ConfigINI>());
-    app->set_config("--config", cfg_file_path.string(), "")
-        ->multi_option_policy(CLI::MultiOptionPolicy::Throw);
-        // ->expected(0, 1);
+    app->set_config("--config", cfg_file_path.string(), "", false);
+        // ->multi_option_policy(CLI::MultiOptionPolicy::Throw)
+        // ->expected(0, 1)
 
     // TODO: undo subcommand
 
