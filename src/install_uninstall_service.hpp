@@ -122,8 +122,9 @@ inline void install_service() {
         throw std::runtime_error("CreateServiceW error.");
     }
 
+    auto w_service_description = widen(MY_SERVICE_DESCRIPTION);
     SERVICE_DESCRIPTIONW serviceDescription = {};
-    serviceDescription.lpDescription = const_cast<LPWSTR>(widen(MY_SERVICE_DESCRIPTION).data());
+    serviceDescription.lpDescription = w_service_description.data();
 
     if (!ChangeServiceConfig2W(
         hService.get(),
