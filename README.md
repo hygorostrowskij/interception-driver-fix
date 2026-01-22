@@ -26,6 +26,10 @@ This application can be customized through the `interception-driver-fix.ini` fil
 ``` ini
 [default]
 lockdown=yes  ; Restrict access of the Interception driver only to applications running with Administrator privileges.
+verbose=yes   ; Enable verbose logs
+
+keyboard-symlinks=1000  ; Advanced: Adjust the number of keyboard symlinks created
+pointer-symlinks=1000   ; Advanced: Adjust the number of mouse symlinks created
 ```
 
 Note: If you change the configuration file, you may need to restart the service or your computer for changes to take effect.
