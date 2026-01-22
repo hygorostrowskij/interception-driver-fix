@@ -96,12 +96,17 @@ inline void remove_symlink(std::string link) {
 }
 
 
-inline void lockdown_interception_device(int idx) {
+inline void set_interception_device_permissions(int idx, bool lockdown) {
     NTSTATUS ret;
+
+    constexpr auto standard_sddl = "D:(A;;FRFW;;;WD)(A;;FR;;;RC)(A;;FA;;;SY)(A;;FA;;;BA)";
+    constexpr auto lockdown_sddl = "D:(A;;FA;;;SY)(A;;FA;;;BA)";
+
+    auto sddl = lockdown ? lockdown_sddl : standard_sddl;
 
     PSECURITY_DESCRIPTOR psd;
     if (!ConvertStringSecurityDescriptorToSecurityDescriptorW(
-        L"D:(A;;FA;;;SY)(A;;FA;;;BA)",  // HARDCODED
+        widen(sddl).data(),
         SDDL_REVISION_1,
         &psd,
         nullptr
@@ -109,7 +114,8 @@ inline void lockdown_interception_device(int idx) {
         throw std::runtime_error("ConvertStringSecurityDescriptorToSecurityDescriptorW error.");
     }
 
-    auto device_path_buffer = widen(fmt::format("\\Device\\Interception{:02}", idx));
+    auto device_path_str = fmt::format("\\Device\\Interception{:02}", idx);
+    auto device_path_buffer = widen(device_path_str);
     UNICODE_STRING device_path;
     RtlInitUnicodeString(&device_path, device_path_buffer.data());
     HANDLE hDevice = nullptr;
@@ -133,14 +139,15 @@ inline void lockdown_interception_device(int idx) {
     if (ret < 0) {
         throw std::runtime_error("NtSetSecurityObject error.");
     }
+
+    spdlog::debug("Setting {} SDDL to {}", device_path_str, sddl);
 }
 
 
 inline int real_main(AppMainConfig cfg) {
-    if (cfg.lockdown) {
-        for (int i = 0; i < cfg.n_max_interception_devices; i++) {
-            lockdown_interception_device(i);
-        }
+    spdlog::info("Lockdown mode: {}", cfg.lockdown ? "enabled" : "disabled");
+    for (int i = 0; i < cfg.n_max_interception_devices; i++) {
+        set_interception_device_permissions(i, cfg.lockdown);
     }
 
     for (int i = 10; i < cfg.n_keyboard_symlinks; i += 10) {
