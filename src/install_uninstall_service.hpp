@@ -119,7 +119,22 @@ inline void install_service() {
         CloseServiceHandle
     );
     if (!hService.get()) {
-        throw std::runtime_error("CreateServiceW error.");
+        if (GetLastError() == ERROR_SERVICE_EXISTS) {
+            hService = sr::make_unique_resource_checked(
+                OpenServiceW(
+                    hSCM.get(),
+                    widen(MY_SERVICE_NAME).data(),
+                    SC_MANAGER_ALL_ACCESS
+                ),
+                nullptr,
+                CloseServiceHandle
+            );
+            if (!hService.get()) {
+                throw std::runtime_error("OpenServiceW error.");
+            }
+        } else {
+            throw std::runtime_error("CreateServiceW error.");
+        }
     }
 
     auto w_service_description = widen(MY_SERVICE_DESCRIPTION);
