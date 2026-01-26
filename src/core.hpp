@@ -84,8 +84,10 @@ inline void remove_symlink(std::string link) {
         DELETE,
         &link_obj_attrs
     );
-    if (ret == STATUS_OBJECT_NAME_NOT_FOUND) {
-        return;  // No symlink to delete (and no handle to close, I think.)
+    if (ret == STATUS_OBJECT_NAME_NOT_FOUND  // No symlink to delete
+        || ret == STATUS_OBJECT_TYPE_MISMATCH  // Not a symlink
+    ) {
+        return;
     }
     if (ret < 0) {
         throw std::runtime_error(fmt::format("NtOpenSymbolicLinkObject error (0x{:x}).", static_cast<ULONG>(ret)));
