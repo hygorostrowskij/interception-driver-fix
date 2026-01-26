@@ -15,6 +15,8 @@ namespace hy {
 
 
 inline void create_symlink(std::string link, std::string target) {
+    spdlog::debug("Symlinking {} to {}", link, target);
+
     NTSTATUS ret;
 
     auto link_name_buffer   = widen(link);
@@ -58,6 +60,8 @@ inline void create_symlink(std::string link, std::string target) {
 
 
 inline void remove_symlink(std::string link) {
+    spdlog::debug("Removing symlink {}", link);
+
     NTSTATUS ret;
 
     auto link_name_buffer = widen(link);
@@ -155,8 +159,6 @@ inline int real_main(AppMainConfig cfg) {
             auto link   = fmt::format("\\Device\\KeyboardClass{}", i+j);
             auto target = fmt::format("\\Device\\KeyboardClass{}", j);
 
-            spdlog::debug("Symlinking {} to {}", link, target);
-
             create_symlink(link, target);
         }
     }
@@ -165,8 +167,6 @@ inline int real_main(AppMainConfig cfg) {
         for (int j = 0; j < 10; j++) {
             auto link   = fmt::format("\\Device\\PointerClass{}", i+j);
             auto target = fmt::format("\\Device\\PointerClass{}", j);
-
-            spdlog::debug("Symlinking {} to {}", link, target);
 
             create_symlink(link, target);
         }
